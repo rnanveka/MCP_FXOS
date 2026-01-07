@@ -1,0 +1,110 @@
+# Pipeline Notify - Pipeline Definitions
+# =====================================
+# Configure available CI/CD pipelines here
+
+pipelines:
+  # FXOS Precommit Bazel Pipeline
+  - name: FXOS_PB
+    display_name: FXOS Precommit Bazel
+    job_path_env: JENKINS_JOB_PATH_FXOS_PB
+    enabled: true
+    description: FXOS Precommit Bazel builds (9 platforms)
+    
+    # Available branches
+    branches:
+      - name: main
+        display_name: Main Branch
+        default: true
+      - name: fxos_2_19
+        display_name: FXOS 2.19
+      - name: fxos_2_18
+        display_name: FXOS 2.18
+    
+    # Platform configurations
+    platforms:
+      - id: arm
+        dir: ARMsa/image
+        outfile: ARM-OutFile.txt
+        cache: bazel_cache.txt
+      - id: armv
+        dir: ARMVsa/image
+        outfile: ARMV-OutFile.txt
+        cache: bazel_cache.txt
+      - id: ssp
+        dir: sspsa/image
+        outfile: ssp-OutFile.txt
+        cache: bazel_cache.txt
+      - id: smp
+        dir: smpsa/image
+        outfile: smp-OutFile.txt
+        cache: bazel_cache.txt
+      - id: arsenal
+        dir: ARSENALsa/image
+        outfile: ARSENAL-OutFile.txt
+        cache: bazel_cache.txt
+      - id: wpk
+        dir: WPKsa/image
+        outfile: WPK-OutFile.txt
+        cache: bazel_cache.txt
+      - id: fp1k
+        dir: FP1Ksa/image
+        outfile: FP1K-OutFile.txt
+        cache: bazel_cache.txt
+      - id: fp3k
+        dir: FP3Ksa/image
+        outfile: FP3K-OutFile.txt
+        cache: bazel_cache.txt
+      - id: fp4k
+        dir: FP4Ksa/image
+        outfile: FP4K-OutFile.txt
+        cache: bazel_cache.txt
+  
+  # ASA Precommit Bazel Pipeline
+  - name: ASA
+    display_name: ASA Precommit Bazel
+    job_path_env: JENKINS_JOB_PATH_ASA
+    enabled: true
+    description: ASA Precommit Bazel builds (4 platforms)
+    
+    # Available branches
+    branches:
+      - name: main
+        display_name: Main Branch
+        default: true
+      - name: cairo
+        display_name: Cairo
+    
+    # Platform configurations (no separate cache file, parsed from outfile)
+    platforms:
+      - id: arm
+        dir: ARMsa/Xpix
+        outfile: armOut.txt
+      - id: arm8
+        dir: ARMv8sa/Xpix
+        outfile: armv8Out.txt
+      - id: smp
+        dir: SMPsa/Xpix
+        outfile: smpOut.txt
+      - id: ssp
+        dir: SSPsa/Xpix
+        outfile: sspOut.txt
+
+
+# Splunk Branch Configurations
+splunk_branches:
+  - name: fxos_19
+    project: boreas
+    splunk_filter: 'branch="uxbridge/FXOS_2_19_MAIN"'
+    enabled: true
+    
+  - name: fxos_18
+    project: boreas
+    splunk_filter: 'branch="temple/FXOS_2_18_MAIN"'
+    enabled: true
+    
+  - name: lina
+    project: lina
+    splunk_filter: 'branch="cairo"'
+    enabled: true
+    aliases:
+      - cairo

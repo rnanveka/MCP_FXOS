@@ -1,0 +1,40 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "🚀 Start a Build",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Select the pipeline you want to build:",
+      "wrap": true
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "pipeline",
+      "style": "compact",
+      "isRequired": true,
+      "choices": [
+        {"title": "FXOS Precommit Bazel", "value": "FXOS_PB"},
+        {"title": "ASA Precommit Bazel", "value": "ASA"}
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Next",
+      "data": {"action_type": "select_pipeline"}
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Cancel",
+      "data": {"action_type": "cancel"}
+    }
+  ]
+}

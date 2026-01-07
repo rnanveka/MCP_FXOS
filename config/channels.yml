@@ -1,0 +1,51 @@
+# Pipeline Notify - Channel Configuration
+# ========================================
+# Configure Webex rooms and people for notifications
+
+webex:
+  # Webex Rooms (Group Spaces)
+  rooms:
+    - name: Pipeline Notifications
+      roomId: REPLACE_WITH_ROOM_ID
+      enabled: false
+      description: Main notification room for pipeline alerts
+    
+    - name: Dev Team
+      roomId: REPLACE_WITH_ROOM_ID
+      enabled: false
+      description: Development team space
+  
+  # Individual People (Direct Messages)
+  people:
+    - name: Revanth
+      email: rnanveka@cisco.com
+      enabled: true
+    
+    - name: Anish
+      email: andhondi@cisco.com
+      enabled: false
+    
+    - name: Manasa
+      email: mboitei@cisco.com
+      enabled: true
+    
+    - name: Chitransh
+      email: cmakode@cisco.com
+      enabled: false
+    
+    - name: Gnanasekar
+      email: gloganat@cisco.com
+      enabled: false
+    
+    - name: Lasya Kuna
+      email: lkuna@cisco.com
+      enabled: false
+
+
+# Configuration Notes:
+# --------------------
+# 1. To enable a channel, set 'enabled: true'
+# 2. For rooms, you need the Webex roomId (found in room details)
+# 3. For people, use their Cisco email address
+# 4. The bot will only send to channels with enabled: true
+# 5. Make sure the bot is added to any rooms you want to notify
